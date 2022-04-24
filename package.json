@@ -1,0 +1,12 @@
+{
+  "name": "ambient-back",
+  "version": "1.0.0",
+  "description": "Backend del proyecto Ambient",
+  "main": "index.js",
+  "repository": "https://github.com/AmbientTeam2022/ambient-back.git",
+  "author": "MisaoDev <69985862+MisaoDev@users.noreply.github.com>",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
