@@ -3,9 +3,9 @@
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "editorconfig.editorconfig",
-    "wayou.vscode-todo-highlight",
+    "syler.sass-indented",
     "eamodio.gitlens",
-    "syler.sass-indented"
+    "wayou.vscode-todo-highlight"
   ],
   "unwantedRecommendations": [
     "hookyqr.beautify",
