@@ -6,7 +6,25 @@
   "repository": "https://github.com/AmbientTeam2022/ambient-back.git",
   "author": "MisaoDev <69985862+MisaoDev@users.noreply.github.com>",
   "license": "UNLICENSED",
+  "scripts": {
+    "lint": "eslint --ext .js --ignore-path .gitignore .",
+    "format": "prettier --write \"**/*.{js,css,scss,html,md,json}\" --ignore-path .gitignore",
+    "debug": "set DEBUG=* & nodemon ./src/server.js",
+    "dev": "nodemon ./src/server.js",
+    "build": "pm2 start ecosystem.config.js"
+  },
   "dependencies": {
     "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.9",
+    "eslint": "^8.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.1.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.6.2"
   }
 }

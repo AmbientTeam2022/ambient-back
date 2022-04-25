@@ -1,0 +1,7 @@
+/dist
+/src-bex/www
+/src-capacitor
+/src-cordova
+/node_modules
+.eslintrc.js
+/docs
