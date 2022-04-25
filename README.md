@@ -31,7 +31,7 @@ Instala las dependencias de Node usando Yarn:
 yarn
 ```
 
-Crea un archivo `.env` en la raíz del proyecto (`ambient-back`). Copia el siguiente contenido:
+Copia el archivo `.env.example` como `.env` en la raíz del proyecto (`ambient-back`). Edita el nuevo archivo con estos valores:
 
 ```
 PORT=3000
