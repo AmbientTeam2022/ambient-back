@@ -3,12 +3,12 @@ const Schema = mongoose.Schema
 
 const HabitatSchema = new Schema({
   name: { type: String, required: true, default: '' },
-  Folder: {
+  folder: {
     type: Schema.Types.ObjectId,
     ref: 'Folder',
     default: 'null',
   }, // fk de Folder
-  Location: {
+  location: {
     type: Schema.Types.ObjectId,
     ref: 'Location',
     required: true,
