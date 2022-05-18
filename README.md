@@ -33,8 +33,12 @@ yarn
 
 Copia el archivo `.env.example` como `.env` en la raíz del proyecto (`ambient-back`). Edita el nuevo archivo con estos valores:
 
-```
+```properties
 PORT=3000
+JWT_SECRET=Km1MW8pByLfL6RzMc9glK5m5Vq0HCuWA2po33THj2wU
+JWT_TIMEOUT=90
+MONGO_DB=mongodb://localhost:27017/ambient_db
+
 ```
 
 ## Arranque
