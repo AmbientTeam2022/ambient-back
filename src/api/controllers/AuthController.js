@@ -32,8 +32,11 @@ const login = async (req, res) => {
       })
     }
 
+    const userData = { ...user.toObject() }
+    delete userData.passwordHash
+
     const token = createToken(user.toJSON(), process.env.JWT_TIMEOUT)
-    res.json({ success: true, token: 'JWT' + token })
+    res.json({ token: 'JWT' + token, userData })
   })
 }
 
@@ -50,10 +53,18 @@ const register = async (req, res) => {
     })
   }
 
+  let user = await User.findOne({ username })
+  if (user) {
+    return res.status(401).send({
+      success: false,
+      msg: 'Ya existe un usuario con este nombre',
+    })
+  }
+
   const saltRounds = process.env.SALT_ROUNDS || 10
   const passwordHash = await bcrypt.hash(password, saltRounds)
 
-  const user = new User({
+  user = new User({
     username,
     passwordHash,
     firstName,
@@ -64,7 +75,9 @@ const register = async (req, res) => {
   user
     .save()
     .then(() => {
-      return res.json({ success: true, msg: 'Usuario creado' })
+      const userData = { ...user.toObject() }
+      delete userData.passwordHash
+      return res.json({ success: true, msg: 'Usuario creado', userData })
     })
     .catch((err) => {
       return res.json({ success: false, msg: err.message })
