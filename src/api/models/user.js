@@ -18,11 +18,11 @@ const UserSchema = new Schema({
   },
   role: {
     type: Schema.Types.ObjectId,
-    ref: 'role',
+    ref: 'Role',
   },
   organization: {
     type: Schema.Types.ObjectId,
-    ref: 'organization',
+    ref: 'Organization',
     required: true,
   },
   passwordHash: {
@@ -42,6 +42,7 @@ UserSchema.methods.createOrganization = function () {
   this.organization = new Organization({
     name: this.username,
   })
+  this.organization.save()
 }
 
 module.exports = mongoose.model('User', UserSchema)
