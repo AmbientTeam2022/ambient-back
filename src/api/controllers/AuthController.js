@@ -10,16 +10,14 @@ const login = async (req, res) => {
   const { username, password } = req.body
   if (!username || !password) {
     return res.status(401).send({
-      success: false,
-      msg: 'El usuario y contraseña son campos requeridos',
+      msg: 'Campos requeridos: usuario y contraseña',
     })
   }
 
-  const user = await User.findOne({ username })
+  const user = await User.findOne({ username }).populate('organization')
   if (!user) {
     return res.status(401).send({
-      success: false,
-      msg: 'Usuario no encontrado',
+      msg: 'Credenciales inválidas',
     })
   }
 
@@ -27,8 +25,7 @@ const login = async (req, res) => {
     if (err) throw err
     if (!isSame) {
       return res.status(401).send({
-        success: false,
-        msg: 'Contraseña incorrecta',
+        msg: 'Credenciales inválidas',
       })
     }
 
@@ -36,7 +33,7 @@ const login = async (req, res) => {
     delete userData.passwordHash
 
     const token = createToken(user.toJSON(), process.env.JWT_TIMEOUT)
-    res.json({ token: 'JWT' + token, userData })
+    res.status(200).send({ token: 'JWT' + token, userData })
   })
 }
 
@@ -48,7 +45,6 @@ const register = async (req, res) => {
   const { username, password, firstName, lastName } = req.body
   if (!username || !password || !firstName || !lastName) {
     return res.status(401).send({
-      success: false,
       msg: 'Todos los campos son requeridos',
     })
   }
@@ -56,7 +52,6 @@ const register = async (req, res) => {
   let user = await User.findOne({ username })
   if (user) {
     return res.status(401).send({
-      success: false,
       msg: 'Ya existe un usuario con este nombre',
     })
   }
@@ -77,14 +72,20 @@ const register = async (req, res) => {
     .then(() => {
       const userData = { ...user.toObject() }
       delete userData.passwordHash
-      return res.json({ success: true, msg: 'Usuario creado', userData })
+      return res.status(201).send({ msg: 'Usuario creado', userData })
     })
     .catch((err) => {
-      return res.json({ success: false, msg: err.message })
+      return res.status(500).send({ msg: err.message })
     })
+}
+
+const logout = async (req, res) => {
+  // do nothing
+  res.status(200).send({ msg: 'Sesión cerrada con éxito' })
 }
 
 module.exports = {
   login,
   register,
+  logout,
 }
