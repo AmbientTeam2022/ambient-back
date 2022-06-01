@@ -69,6 +69,10 @@ yarn lint
 yarn format
 ```
 
+## Documentación de la API
+
+http://localhost:3000/api-docs/
+
 ## Herramientas
 
 Se recomiendan las siguientes extensiones para VSCode. Debería preguntarte si quieres instalarlas.
