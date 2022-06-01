@@ -22,21 +22,29 @@
         "tags": [
           "Auth"
         ],
+        "summary": "Inicia sesión y devuelve al usuario y el token JWT de autorización",
         "description": "",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "description": "Cuerpo de la solicitud",
             "schema": {
               "type": "object",
               "properties": {
                 "username": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "alanbrito"
                 },
                 "password": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "12345"
                 }
-              }
+              },
+              "required": [
+                "username",
+                "password"
+              ]
             }
           }
         ],
@@ -55,27 +63,39 @@
         "tags": [
           "Auth"
         ],
-        "description": "",
+        "summary": "Crea un nuevo usuario",
+        "description": "Genera un hash + salt de contraseña. También crea una organización vacía para el usuario.",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "description": "Cuerpo de la solicitud",
             "schema": {
               "type": "object",
               "properties": {
                 "username": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "alanbrito"
                 },
                 "password": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "12345"
                 },
                 "firstName": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Alan"
                 },
                 "lastName": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Brito"
                 }
-              }
+              },
+              "required": [
+                "username",
+                "password",
+                "firstName",
+                "lastName"
+              ]
             }
           }
         ],
@@ -94,8 +114,148 @@
     },
     "/auth/logout/": {
       "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Cierra la sesión del usuario",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Cuerpo de la solicitud",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/device/": {
+      "get": {
+        "tags": [
+          "Device"
+        ],
+        "summary": "Obtiene la lista de dispositivos",
         "description": "",
         "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Device"
+        ],
+        "summary": "Crea un nuevo dispositivo",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Cuerpo de la solicitud",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "uuid": {
+                  "type": "string",
+                  "example": "1234"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "Sapitos"
+                },
+                "category": {
+                  "type": "number",
+                  "example": 1
+                },
+                "habitat": {
+                  "type": "number",
+                  "example": 3
+                }
+              },
+              "required": [
+                "uuid",
+                "name",
+                "category",
+                "habitat"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/device/{uuid}": {
+      "get": {
+        "tags": [
+          "Device"
+        ],
+        "summary": "Obtiene un dispositivo por su UUID",
+        "description": "",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Identificador único UUID del dispositivo"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Device"
+        ],
+        "summary": "Modifica un dispositivo existente",
+        "description": "",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Identificador único UUID del dispositivo"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Device"
+        ],
+        "summary": "Eliminar un dispositivo (soft-delete)",
+        "description": "",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Identificador único UUID del dispositivo"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"

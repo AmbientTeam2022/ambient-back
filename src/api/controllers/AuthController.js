@@ -6,7 +6,17 @@ const bcrypt = require('bcrypt')
  * POST /login/
  */
 const login = async (req, res) => {
-  // #swagger.tags = ['Auth']
+  /* #swagger.tags = ['Auth']
+    #swagger.summary = 'Inicia sesión y devuelve al usuario y el token JWT de autorización'
+    #swagger.parameters['body'] = {
+      in: 'body',
+      description: 'Cuerpo de la solicitud',
+      schema: {
+        $username: 'alanbrito',
+        $password: '12345',
+      }
+    }
+   */
   const { username, password } = req.body
   if (!username || !password) {
     return res.status(401).send({
@@ -41,7 +51,20 @@ const login = async (req, res) => {
  * POST /register/
  */
 const register = async (req, res) => {
-  // #swagger.tags = ['Auth']
+  /* #swagger.tags = ['Auth']
+    #swagger.summary = 'Crea un nuevo usuario'
+    #swagger.description = 'Genera un hash + salt de contraseña. También crea una organización vacía para el usuario.'
+    #swagger.parameters['body'] = {
+      in: 'body',
+      description: 'Cuerpo de la solicitud',
+      schema: {
+        $username: 'alanbrito',
+        $password: '12345',
+        $firstName: 'Alan',
+        $lastName: 'Brito',
+      }
+    }
+   */
   const { username, password, firstName, lastName } = req.body
   if (!username || !password || !firstName || !lastName) {
     return res.status(401).send({
@@ -80,7 +103,14 @@ const register = async (req, res) => {
 }
 
 const logout = async (req, res) => {
-  // do nothing
+  /* #swagger.tags = ['Auth']
+    #swagger.summary = 'Cierra la sesión del usuario'
+    #swagger.parameters['body'] = {
+      in: 'body',
+      description: 'Cuerpo de la solicitud',
+    }
+   */
+  // Por ahora no hace nada y se cierra sesión desde el front
   res.status(200).send({ msg: 'Sesión cerrada con éxito' })
 }
 
