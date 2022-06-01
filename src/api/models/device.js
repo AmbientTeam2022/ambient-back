@@ -4,17 +4,17 @@ const Schema = mongoose.Schema
 const DeviceSchema = new Schema({
   uuid: { type: String, required: true, default: '' },
   name: { type: String, required: true, default: 'Dispositivo Ambient' },
-  icon: { type: String, default: 'default' },
+  icon: { type: String, default: '00' },
   category: {
     type: Schema.Types.ObjectId,
     ref: 'category',
     required: true,
-  }, // fk de category
+  },
   habitat: {
     type: Schema.Types.ObjectId,
     ref: 'habitat',
     default: 'null',
-  }, // fk de habitat
+  },
 
   sensor: [
     {
