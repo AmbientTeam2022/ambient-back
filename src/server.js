@@ -37,6 +37,47 @@ autogen().then(() => {
 })
 /* ---------------------------------------------------------------------------------------------- */
 
+// Crear categorías aquí
+const categories = [
+  {
+    name: 'Acuario',
+    icon: '00',
+    params: [
+      { name: 'Temperatura', min: 0, max: 0 },
+      { name: 'Nivel de agua', min: 0, max: 0 },
+    ],
+  },
+  {
+    name: 'Insectario',
+    icon: '00',
+  },
+  {
+    name: 'Terrario Reptiles',
+    icon: '00',
+  },
+  {
+    name: 'Terrario Anfibios',
+    icon: '00',
+    params: [
+      { name: 'Temperatura', min: 0, max: 0 },
+      { name: 'Humedad', min: 0, max: 0 },
+    ],
+  },
+]
+
+const Category = require('../models/category')
+async function initialData() {
+  for (const cat of categories) {
+    const data = await Category.find({ name: cat.name }).exec()
+    if (data.length !== 0) return
+
+    const category = new Category(cat)
+    await category.save()
+  }
+}
+
+initialData()
+
 listen()
 
 function listen() {
