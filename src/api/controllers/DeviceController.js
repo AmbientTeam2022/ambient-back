@@ -29,13 +29,15 @@ const createDevice = async (req, res) => {
       schema: {
         $uuid: '1234',
         $name: 'Sapitos',
+        $icon: '04',
         $category: 1,
         $habitat: 3,
       }
     }
    */
-  const { uuid, name, category, habitat } = req.body
-  const data = { uuid, name, category, habitat }
+  // const { uuid, name, icon, category, habitat } = req.body
+  // const data = { uuid, name, icon, category, habitat }
+  const data = req.body
 
   const device = new Device(data)
   device

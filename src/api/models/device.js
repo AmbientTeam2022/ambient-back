@@ -7,13 +7,13 @@ const DeviceSchema = new Schema({
   icon: { type: String, default: '00' },
   category: {
     type: Schema.Types.ObjectId,
-    ref: 'category',
-    required: true,
+    ref: 'Category',
+    // required: true,
   },
   habitat: {
     type: Schema.Types.ObjectId,
-    ref: 'habitat',
-    default: 'null',
+    ref: 'Habitat',
+    // default: 'null',
   },
 
   sensor: [

@@ -173,6 +173,10 @@
                   "type": "string",
                   "example": "Sapitos"
                 },
+                "icon": {
+                  "type": "string",
+                  "example": "04"
+                },
                 "category": {
                   "type": "number",
                   "example": 1
@@ -185,6 +189,7 @@
               "required": [
                 "uuid",
                 "name",
+                "icon",
                 "category",
                 "habitat"
               ]
