@@ -1,13 +1,13 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const RolesSchema = new Schema({
+const RoleSchema = new Schema({
   name: { type: String, required: true, default: '' },
   organization: {
     type: Schema.Types.ObjectId,
-    ref: 'organization',
+    ref: 'Organization',
     required: true,
-  }, // fk de organization
+  },
   can_manage_user: { type: Boolean, required: true, default: false },
   can_manage_device: { type: Boolean, required: true, default: false },
   can_manage_roles: { type: Boolean, required: true, default: false },
@@ -15,4 +15,4 @@ const RolesSchema = new Schema({
   can_view_device: { type: Boolean, required: true, default: false },
 })
 
-module.exports = mongoose.model('Roles', RolesSchema)
+module.exports = mongoose.model('Role', RoleSchema)

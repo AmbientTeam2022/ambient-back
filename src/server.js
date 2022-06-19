@@ -5,16 +5,12 @@ const swaggerUi = require('swagger-ui-express')
 
 const autogen = require('./swagger')
 const apiRouter = require('./api/routes')
-const mongoose = require('mongoose')
+const getAdminJs = require('./adminJs')
 
 /* ---------------------------------------------------------------------------------------------- */
-const mongoDB = process.env.MONGO_DB
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true })
-const db = mongoose.connection
-db.on('error', console.error.bind(console, 'MongoDB connection error:'))
-
 const app = express()
 app.use(express.json())
+app.use(express.static('public'))
 
 const origin =
   process.env.NODE_ENV === 'dev'
@@ -38,49 +34,56 @@ autogen().then(() => {
 /* ---------------------------------------------------------------------------------------------- */
 
 // Crear categorías aquí
-const categories = [
-  {
-    name: 'Acuario',
-    icon: '00',
-    params: [
-      { name: 'Temperatura', min: 0, max: 0 },
-      { name: 'Nivel de agua', min: 0, max: 0 },
-    ],
-  },
-  {
-    name: 'Insectario',
-    icon: '00',
-  },
-  {
-    name: 'Terrario Reptiles',
-    icon: '00',
-  },
-  {
-    name: 'Terrario Anfibios',
-    icon: '00',
-    params: [
-      { name: 'Temperatura', min: 0, max: 0 },
-      { name: 'Humedad', min: 0, max: 0 },
-    ],
-  },
-]
+// const categories = [
+//   {
+//     name: 'Acuario',
+//     icon: '00',
+//     params: [
+//       { name: 'temperature', min: 0, max: 0 },
+//       { name: 'waterLevel', min: 0, max: 0 },
+//     ],
+//   },
+//   {
+//     name: 'Insectario',
+//     icon: '00',
+//     params: [
+//       { name: 'temperature', min: 21, max: 24 },
+//       { name: 'humidity', min: 0, max: 50 },
+//     ],
+//   },
+//   {
+//     name: 'Terrario Reptiles',
+//     icon: '00',
+//   },
+//   {
+//     name: 'Terrario Anfibios',
+//     icon: '00',
+//     params: [
+//       { name: 'Temperatura', min: 0, max: 0 },
+//       { name: 'Humedad', min: 0, max: 0 },
+//     ],
+//   },
+// ]
 
-const Category = require('../models/category')
-async function initialData() {
-  for (const cat of categories) {
-    const data = await Category.find({ name: cat.name }).exec()
-    if (data.length !== 0) return
+// const Category = require('./api/models/category')
+// async function initialData() {
+//   for (const cat of categories) {
+//     const data = await Category.find({ name: cat.name }).exec()
+//     if (data.length !== 0) return
 
-    const category = new Category(cat)
-    await category.save()
-  }
-}
+//     const category = new Category(cat)
+//     await category.save()
+//   }
+// }
+//
+// initialData()
 
-initialData()
+start()
 
-listen()
+async function start() {
+  const adminJs = await getAdminJs()
+  app.use(adminJs)
 
-function listen() {
   const port = process.env.PORT || 3000
   app.listen(port)
   console.log(`Express app started on port ${port}`)
