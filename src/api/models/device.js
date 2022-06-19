@@ -5,15 +5,21 @@ const DeviceSchema = new Schema({
   uuid: { type: String, required: true, default: '' },
   name: { type: String, required: true, default: 'Dispositivo Ambient' },
   icon: { type: String, default: '00' },
+
   category: {
     type: Schema.Types.ObjectId,
     ref: 'Category',
-    // required: true,
+    required: true,
   },
+
+  organization: {
+    type: Schema.Types.ObjectId,
+    ref: 'Organization',
+  },
+
   habitat: {
     type: Schema.Types.ObjectId,
     ref: 'Habitat',
-    // default: 'null',
   },
 
   sensor: [
