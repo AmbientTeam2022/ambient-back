@@ -24,6 +24,7 @@ const adminJsOptions = {
   branding: {
     companyName: 'Ambient',
     logo: '/img/logo.png',
+    softwareBrothers: false,
   },
 }
 
