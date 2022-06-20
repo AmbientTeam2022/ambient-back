@@ -76,7 +76,7 @@ const deleteDevice = async (req, res) => {
    */
   const uuid = req.params.uuid
   const device = await Device.findOne({ uuid })
-  device.deleted = true
+  device.organization = undefined
   device
     .save()
     .then(() => {
