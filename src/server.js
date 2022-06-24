@@ -11,7 +11,6 @@ const getAdminJs = require('./adminJs')
 const app = express()
 app.use(express.json())
 app.use(express.static('public'))
-app.use('/api/', apiRouter)
 
 const origin =
   process.env.NODE_ENV === 'dev'
@@ -24,6 +23,8 @@ app.use(
     origin,
   }),
 )
+
+app.use('/api/', apiRouter)
 
 /* --------------------------------------- Swagger Autogen -------------------------------------- */
 autogen().then(() => {
