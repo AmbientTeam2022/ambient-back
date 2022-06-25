@@ -10,4 +10,4 @@ tasks:
     command: yarn run dev
 
   - name: mongo
-    command: mkdir -p workspace/data && mongod --dbpath /workspace/data
+    command: mkdir -p gitpod-ws/data && mongod --dbpath gitpod-ws/data
