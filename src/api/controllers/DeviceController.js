@@ -4,7 +4,8 @@ const listDevices = async (req, res) => {
   /* #swagger.tags = ['Device']
     #swagger.summary = 'Obtiene la lista de dispositivos'
    */
-  const all = await Device.find()
+  const organization = req.user.organization
+  const all = await Device.find({ organization }).populate('category habitat')
   res.json(all)
 }
 
@@ -58,7 +59,9 @@ const updateDevice = async (req, res) => {
     }
    */
   const uuid = req.params.uuid
-  Device.findOneAndUpdate({ uuid }, req.body)
+  const organization = req.user.organization
+
+  Device.findOneAndUpdate({ uuid, organization }, req.body)
     .then((device) => {
       return res.json({ device })
     })
@@ -88,10 +91,54 @@ const deleteDevice = async (req, res) => {
     })
 }
 
+const getNewDevice = async (req, res) => {
+  /* #swagger.tags = ['Device']
+    #swagger.summary = 'Obtiene un dispositivo usando sus credenciales'
+    #swagger.parameters['body'] = {
+      in: 'body',
+      description: 'Cuerpo de la solicitud',
+      schema: {
+        $uuid: '1234-1234-1234',
+        $password: 'asd123',
+      }
+    }
+   */
+  const { uuid, password } = req.body
+  const device = await Device.findOne({ uuid, password }).populate('category')
+  if (!device) {
+    return res.status(403).json({
+      msg: 'UUID o contraseña incorrectos',
+    })
+  }
+  res.json(device)
+}
+
+const addToOrganization = async (req, res) => {
+  /* #swagger.tags = ['Device']
+    #swagger.summary = 'Modifica un dispositivo existente'
+    #swagger.parameters['uuid'] = {
+      description: 'Identificador único UUID del dispositivo',
+    }
+   */
+  const { uuid } = req.params
+  const { organization, name, param, password } = req.body
+  const data = { organization, name, param }
+
+  Device.findOneAndUpdate({ uuid, password }, data)
+    .then((device) => {
+      return res.json({ device })
+    })
+    .catch((err) => {
+      return res.json(err)
+    })
+}
+
 module.exports = {
   listDevices,
   getDevice,
   createDevice,
   updateDevice,
   deleteDevice,
+  getNewDevice,
+  addToOrganization,
 }

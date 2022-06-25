@@ -7,12 +7,6 @@ const HabitatSchema = new Schema({
   folder: {
     type: Schema.Types.ObjectId,
     ref: 'Folder',
-    default: 'null',
-  },
-  location: {
-    type: Schema.Types.ObjectId,
-    ref: 'Location',
-    required: true,
   },
 })
 

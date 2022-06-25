@@ -27,6 +27,7 @@ app.use(
 app.use('/api/', apiRouter)
 
 /* --------------------------------------- Swagger Autogen -------------------------------------- */
+console.log('Generando Swagger UI...')
 autogen().then(() => {
   const swaggerDocument = require('./swagger.json')
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
@@ -82,10 +83,11 @@ autogen().then(() => {
 start()
 
 async function start() {
+  console.log('Configurando panel AdminJS...')
   const adminJs = await getAdminJs()
   app.use(adminJs)
 
   const port = process.env.PORT || 3000
   app.listen(port)
-  console.log(`Express app started on port ${port}`)
+  console.log(`App Express iniciada en puerto ${port}`)
 }

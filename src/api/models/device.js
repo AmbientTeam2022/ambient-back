@@ -5,6 +5,7 @@ const Category = require('../models/category')
 const DeviceSchema = new Schema({
   uuid: { type: String, required: true, default: '' },
   name: { type: String, required: true, default: 'Dispositivo Ambient' },
+  password: { type: String, required: true, minlength: 6 },
 
   category: {
     type: Schema.Types.ObjectId,

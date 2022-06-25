@@ -43,7 +43,7 @@ const login = async (req, res) => {
     delete userData.passwordHash
 
     const token = createToken(user.toJSON(), process.env.JWT_TIMEOUT)
-    res.status(200).send({ token: 'JWT' + token, userData })
+    res.status(200).send({ token, userData })
   })
 }
 

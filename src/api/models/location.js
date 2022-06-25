@@ -11,3 +11,5 @@ const LocationSchema = new Schema({
 })
 
 module.exports = mongoose.model('Location', LocationSchema)
+
+// TODO: eliminar este archivo, modelo descontinuado
