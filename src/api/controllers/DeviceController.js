@@ -110,6 +110,12 @@ const getNewDevice = async (req, res) => {
       msg: 'UUID o contraseña incorrectos',
     })
   }
+  const organization = req.user.organization
+  if (!!device.organization && !device.organization.equals(organization._id)) {
+    return res.status(403).json({
+      msg: 'El dispositivo ya pertenece a otra organización',
+    })
+  }
   res.json(device)
 }
 
@@ -121,8 +127,10 @@ const addToOrganization = async (req, res) => {
     }
    */
   const { uuid } = req.params
-  const { organization, name, param, password } = req.body
-  const data = { organization, name, param }
+  const { name, param, habitat, password } = req.body
+  const organization = req.user.organization
+
+  const data = { organization, name, habitat, param }
 
   Device.findOneAndUpdate({ uuid, password }, data)
     .then((device) => {

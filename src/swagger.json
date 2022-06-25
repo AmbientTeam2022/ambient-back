@@ -159,57 +159,6 @@
             "description": "Unauthorized"
           }
         }
-      },
-      "post": {
-        "tags": [
-          "Device"
-        ],
-        "summary": "Crea un nuevo dispositivo",
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "description": "Cuerpo de la solicitud",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "uuid": {
-                  "type": "string",
-                  "example": "1234"
-                },
-                "name": {
-                  "type": "string",
-                  "example": "Sapitos"
-                },
-                "icon": {
-                  "type": "string",
-                  "example": "04"
-                },
-                "category": {
-                  "type": "number",
-                  "example": 1
-                },
-                "habitat": {
-                  "type": "number",
-                  "example": 3
-                }
-              },
-              "required": [
-                "uuid",
-                "name",
-                "icon",
-                "category",
-                "habitat"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
       }
     },
     "/device/{uuid}/": {
@@ -226,32 +175,19 @@
             "required": true,
             "type": "string",
             "description": "Identificador único UUID del dispositivo"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Device"
-        ],
-        "summary": "Modifica un dispositivo existente",
-        "description": "",
-        "parameters": [
+          },
           {
-            "name": "uuid",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": "Identificador único UUID del dispositivo"
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         }
       },
@@ -268,11 +204,19 @@
             "required": true,
             "type": "string",
             "description": "Identificador único UUID del dispositivo"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         }
       }
@@ -285,6 +229,11 @@
         "summary": "Obtiene un dispositivo usando sus credenciales",
         "description": "",
         "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          },
           {
             "name": "body",
             "in": "body",
@@ -312,6 +261,9 @@
           "200": {
             "description": "OK"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "403": {
             "description": "Forbidden"
           }
@@ -334,18 +286,23 @@
             "description": "Identificador único UUID del dispositivo"
           },
           {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
             "name": "body",
             "in": "body",
             "schema": {
               "type": "object",
               "properties": {
-                "organization": {
-                  "example": "any"
-                },
                 "name": {
                   "example": "any"
                 },
                 "param": {
+                  "example": "any"
+                },
+                "habitat": {
                   "example": "any"
                 },
                 "password": {
@@ -358,6 +315,33 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/habitat/": {
+      "get": {
+        "tags": [
+          "Device"
+        ],
+        "summary": "Obtiene la lista de dispositivos",
+        "description": "",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         }
       }

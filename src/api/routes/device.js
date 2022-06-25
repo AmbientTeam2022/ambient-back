@@ -4,15 +4,12 @@ const { authRequired } = require('../middleware/authRequired')
 
 const router = express.Router()
 
-// TODO: cambiar rutas agregando middleware de autorización:
-// router.get('/', authRequired ,DeviceController.listDevices)
-
 router.get('/', authRequired, DeviceController.listDevices)
-router.get('/:uuid/', DeviceController.getDevice)
-router.post('/new/', DeviceController.getNewDevice)
-router.post('/', DeviceController.createDevice)
-router.put('/:uuid/', DeviceController.updateDevice)
-router.patch('/add/:uuid/', DeviceController.addToOrganization)
-router.delete('/:uuid/', DeviceController.deleteDevice)
+router.get('/:uuid/', authRequired, DeviceController.getDevice)
+router.post('/new/', authRequired, DeviceController.getNewDevice)
+router.patch('/add/:uuid/', authRequired, DeviceController.addToOrganization)
+router.delete('/:uuid/', authRequired, DeviceController.deleteDevice)
+// router.post('/', DeviceController.createDevice)
+// router.put('/:uuid/', DeviceController.updateDevice)
 
 module.exports = router
