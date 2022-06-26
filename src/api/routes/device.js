@@ -1,6 +1,7 @@
 const express = require('express')
 const DeviceController = require('../controllers/DeviceController')
 const { authRequired } = require('../middleware/authRequired')
+const { allowCors } = require('../middleware/allowCors')
 
 const router = express.Router()
 
@@ -11,7 +12,7 @@ router.patch('/add/:uuid/', authRequired, DeviceController.addToOrganization)
 router.delete('/:uuid/', authRequired, DeviceController.deleteDevice)
 
 // Arduino
-router.patch('/send/:uuid/', DeviceController.updateSensors)
+router.patch('/send/:uuid/', allowCors, DeviceController.updateSensors)
 
 // router.post('/', DeviceController.createDevice)
 // router.put('/:uuid/', DeviceController.updateDevice)
