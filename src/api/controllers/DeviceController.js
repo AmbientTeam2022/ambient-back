@@ -104,7 +104,9 @@ const getNewDevice = async (req, res) => {
     }
    */
   const { uuid, password } = req.body
-  const device = await Device.findOne({ uuid, password }).populate('category')
+  const device = await Device.findOne({ uuid, password }).populate(
+    'category habitat',
+  )
   if (!device) {
     return res.status(403).json({
       msg: 'UUID o contraseña incorrectos',
