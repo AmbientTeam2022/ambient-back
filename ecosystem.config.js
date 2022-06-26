@@ -3,7 +3,8 @@ module.exports = {
     {
       name: 'ambient-server',
       script: './src/server.js',
-      watch: '.',
+      // watch: '.',
+      // ignore_watch: './src/swagger.js',
       env: {
         NODE_ENV: 'dev',
       },
