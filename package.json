@@ -12,9 +12,10 @@
   "scripts": {
     "lint": "eslint --ext .js --ignore-path .gitignore .",
     "format": "prettier --write \"**/*.{js,css,scss,html,md,json}\" --ignore-path .gitignore",
+    "build": "echo Running dummy build script...",
     "debug": "set DEBUG=* & nodemon ./src/server.js",
     "dev": "nodemon ./src/server.js --ignore ./src/swagger.json",
-    "build": "pm2 start ecosystem.config.js --env production",
+    "start": "pm2 start ecosystem.config.js --env production",
     "swagger-autogen": "node ./src/swagger.js"
   },
   "dependencies": {
