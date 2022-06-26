@@ -16,8 +16,16 @@ const getDevice = async (req, res) => {
       description: 'Identificador único UUID del dispositivo',
     }
    */
-  const uuid = req.params.uuid
-  const device = await Device.findOne({ uuid })
+  const { uuid } = req.params
+  const { organization } = req.user
+  const device = await Device.findOne({ uuid, organization }).populate(
+    'category habitat',
+  )
+  if (!device) {
+    return res
+      .status(404)
+      .json({ msg: 'No se encontró el dispositivo en su organización' })
+  }
   res.json(device)
 }
 
