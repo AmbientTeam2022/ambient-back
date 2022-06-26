@@ -151,6 +151,48 @@ const addToOrganization = async (req, res) => {
     })
 }
 
+const updateSensors = async (req, res) => {
+  /* #swagger.tags = ['Device']
+    #swagger.summary = 'Envía datos de los sensores'
+    #swagger.parameters['uuid'] = {
+      description: 'Identificador único UUID del dispositivo',
+    }
+    #swagger.parameters['body'] = {
+      in: 'body',
+      description: 'Cuerpo de la solicitud',
+      schema: {
+        $password: 'asd123',
+        $sensor: [
+          {
+            name: 'temperature',
+            value: 22
+          }
+        ]
+      }
+    }
+   */
+  const { uuid } = req.params
+  const { password, sensor: sensorData } = req.body
+
+  const device = await Device.findOne({ uuid, password }).populate('sensor')
+  console.log(device)
+  console.log(sensorData)
+
+  sensorData.forEach((newSensor) => {
+    const i = device.sensor.findIndex((s) => s.name === newSensor.name)
+    device.sensor[i] = newSensor
+  })
+
+  device
+    .save()
+    .then(() => {
+      return res.json({ device })
+    })
+    .catch((err) => {
+      return res.json(err)
+    })
+}
+
 module.exports = {
   listDevices,
   getDevice,
@@ -159,4 +201,5 @@ module.exports = {
   deleteDevice,
   getNewDevice,
   addToOrganization,
+  updateSensors,
 }

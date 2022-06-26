@@ -6,6 +6,9 @@
   "repository": "https://github.com/AmbientTeam2022/ambient-back.git",
   "author": "MisaoDev <69985862+MisaoDev@users.noreply.github.com>",
   "license": "UNLICENSED",
+  "engines": {
+    "node": "16.14.2"
+  },
   "scripts": {
     "lint": "eslint --ext .js --ignore-path .gitignore .",
     "format": "prettier --write \"**/*.{js,css,scss,html,md,json}\" --ignore-path .gitignore",

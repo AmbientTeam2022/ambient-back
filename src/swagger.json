@@ -325,6 +325,63 @@
         }
       }
     },
+    "/device/send/{uuid}/": {
+      "patch": {
+        "tags": [
+          "Device"
+        ],
+        "summary": "Envía datos de los sensores",
+        "description": "",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Identificador único UUID del dispositivo"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Cuerpo de la solicitud",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "password": {
+                  "type": "string",
+                  "example": "asd123"
+                },
+                "sensor": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "example": "temperature"
+                      },
+                      "value": {
+                        "type": "number",
+                        "example": 22
+                      }
+                    }
+                  }
+                }
+              },
+              "required": [
+                "password",
+                "sensor"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/habitat/": {
       "get": {
         "tags": [

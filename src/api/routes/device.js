@@ -9,6 +9,10 @@ router.get('/:uuid/', authRequired, DeviceController.getDevice)
 router.post('/new/', authRequired, DeviceController.getNewDevice)
 router.patch('/add/:uuid/', authRequired, DeviceController.addToOrganization)
 router.delete('/:uuid/', authRequired, DeviceController.deleteDevice)
+
+// Arduino
+router.patch('/send/:uuid/', DeviceController.updateSensors)
+
 // router.post('/', DeviceController.createDevice)
 // router.put('/:uuid/', DeviceController.updateDevice)
 
