@@ -11,6 +11,7 @@ const getAdminJs = require('./adminJs')
 const app = express()
 app.use(express.json())
 app.use(express.static('public'))
+app.use(express.static('docs'))
 
 const origin =
   process.env.NODE_ENV === 'dev'

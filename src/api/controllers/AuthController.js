@@ -1,9 +1,16 @@
+/**
+ * @module AuthController
+ * @category controllers
+ */
+
 const User = require('../models/user')
 const { createToken } = require('../util/auth')
 const bcrypt = require('bcrypt')
 
 /**
- * POST /login/
+ * Endpoint <code style="color: blue">POST /login/</code>
+ * Inicia sesión y devuelve al usuario y el token JWT de autorización.
+ * @static
  */
 const login = async (req, res) => {
   /* #swagger.tags = ['Auth']

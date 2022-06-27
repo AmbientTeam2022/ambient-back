@@ -16,7 +16,9 @@
     "debug": "set DEBUG=* & nodemon ./src/server.js",
     "dev": "nodemon ./src/server.js --ignore ./src/swagger.json",
     "start": "pm2-runtime start ecosystem.config.js --env production",
-    "swagger-autogen": "node ./src/swagger.js"
+    "swagger-autogen": "node ./src/swagger.js",
+    "docs": "jsdoc -c jsdoc.json",
+    "docs-live": "nodemon --exec \"yarn docs\" --watch src"
   },
   "dependencies": {
     "@adminjs/express": "^4.1.3",
@@ -38,6 +40,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",
+    "better-docs": "^2.7.2",
     "eslint": "^8.14.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^17.0.0",

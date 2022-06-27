@@ -1,0 +1,29 @@
+{
+  "plugins": ["node_modules/better-docs/category", "plugins/markdown"],
+  "recurseDepth": 10,
+  "source": {
+    "include": ["src"],
+    "exclude": ["node_modules", "docs"],
+    "includePattern": ".+\\.js(doc|x)?$"
+  },
+  "sourceType": "module",
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc", "closure"]
+  },
+  "opts": {
+    "template": "node_modules/better-docs",
+    "encoding": "utf8",
+    "destination": "./docs/",
+    "recurse": true
+  },
+  "templates": {
+    "cleverLinks": false,
+    "monospaceLinks": false,
+    "better-docs": {
+      "name": "Documentación ambient-back",
+      "logo": "img/logo.png",
+      "css": "styles/custom.css"
+    }
+  }
+}
