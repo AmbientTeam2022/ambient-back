@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> models/device.js</title>
+  <title> middleware/allowCors.js</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -103,7 +103,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>models/device.js</h1>
+                    <h1>middleware/allowCors.js</h1>
                 </header>
                 
 
@@ -112,69 +112,36 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const mongoose = require('mongoose')
-const Schema = mongoose.Schema
-const Category = require('../models/category')
-
-const DeviceSchema = new Schema({
-  uuid: { type: String, required: true, default: '' },
-  name: { type: String, required: true, default: 'Dispositivo Ambient' },
-  password: { type: String, required: true, minlength: 6 },
-
-  category: {
-    type: Schema.Types.ObjectId,
-    ref: 'Category',
-    required: true,
-  },
-
-  organization: {
-    type: Schema.Types.ObjectId,
-    ref: 'Organization',
-  },
-
-  habitat: {
-    type: Schema.Types.ObjectId,
-    ref: 'Habitat',
-  },
-
-  sensor: [
-    {
-      name: { type: String, required: true, default: '' },
-      value: { type: Number, required: true, default: 0 },
-    },
-  ],
-
-  param: [
-    {
-      name: { type: String, required: true, default: '' },
-      min: { type: Number, required: true, default: 0 },
-      max: { type: Number, required: true, default: 0 },
-    },
-  ],
-
-  deleted: { type: Boolean, required: true, default: false },
-})
+            <pre class="prettyprint source linenums"><code>/**
+ * @module allowCors
+ * @category middleware
+ */
 
 /**
- * Carga los parámetros y sensores por defecto de la categoría
+ * Permite a esta ruta ignorar la restricción de CORS
+ *
+ * Modifica la cabecera de la solicitud, agregándole las cabeceras necesarias
+ * para que parezca que viene del origen que corresponde. Permitiendo así que
+ * pase el filtro de CORS (Cross-Origin Resource Sharing).
+ * @param {Object} req Solicitud
+ * @param {Object} res Respuesta
+ * @param {Function} next Siguiente middleware o controller
  */
-DeviceSchema.methods.loadCategoryDefaults = async function () {
-  this.param = []
-  this.sensor = []
+const allowCors = function (req, res, next) {
+  const origin =
+    process.env.NODE_ENV === 'dev'
+      ? 'http://localhost:8080'
+      : process.env.FRONT_URL
 
-  const category = await Category.findOne({ _id: this.category })
-  category.param.forEach((p) => {
-    this.param.push({ ...p.toObject() })
-    this.sensor.push({ name: p.name })
-  })
+  res.header('Access-Control-Allow-Origin', origin)
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept',
+  )
+  next()
 }
 
-DeviceSchema.pre('save', async function () {
-  if (!this.isNew) return
-  await this.loadCategoryDefaults()
-})
-
-module.exports = mongoose.model('Device', DeviceSchema)
+module.exports = { allowCors }
 </code></pre>
         </article>
     </section>
