@@ -149,6 +149,7 @@ const origin =
  * Esto solo aplica a los endpoints de la API, y pueden añadirse excepciones.
  *
  * @name enableCors
+ * @method
  */
 app.use(
   cors({
@@ -166,6 +167,7 @@ console.log('Generando Swagger UI...')
  * Invoca la librería que autogenera la documentación de la API (Swagger/OpenAPI). Posteriormente
  * genera la ruta que lleva a la documentación y la acopla a la aplicación.
  * @name autogenCallback
+ * @method
  */
 autogen().then(() => {
   const swaggerDocument = require('./swagger.json')
