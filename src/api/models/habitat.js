@@ -1,3 +1,14 @@
+/**
+ * Ambiente
+ *
+ * Corresponde al estanque o vivario en el que se ubicará el dispositivo.
+ * Permite organizar e identificar los dispositivos de una organización.
+ * Además, los ambientes se pueden ubicar en carpetas.
+ *
+ * @module habitat
+ * @category models
+ */
+
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 

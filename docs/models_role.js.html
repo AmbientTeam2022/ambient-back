@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> HabitatController</title>
+  <title> models/role.js</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -100,165 +102,52 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p>Module</p>
-                    <h1>HabitatController</h1>
+                    <p>Source</p>
+                    <h1>models/role.js</h1>
                 </header>
                 
 
 
 
-
-<section>
-
-<header>
     
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-
-        
-    
-    </div>
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <div class='vertical-section'>
-            <h1>Methods</h1>
-            <div class="members">
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id=".listHabitats">
-        <a class="href-link" href="#.listHabitats">#</a>
-        
-            
-                <span class='tag'>async</span>
-            
-                <span class='tag'>static</span>
-            
-        
-        <span class="code-name">
-            
-                listHabitats<span class="signature">()</span><span class="type-signature"></span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        <p><code class="get-ep">GET /habitat/</code>
-Obtiene la lista de ambientes</p>
-<p>Devuelve la lista de ambientes asignados a la organización del usuario autenticado.</p>
-    </div>
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="controllers_HabitatController.js.html" class="button">View Source</a>
-            <span>
-                <a href="controllers_HabitatController.js.html">controllers/HabitatController.js</a>, <a href="controllers_HabitatController.js.html#line14">line 14</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-            
-            </div>
-        </div>
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Rol de usuario
+ *
+ * Almacena los permisos que tiene un rol de usuario. Estos roles son
+ * administrados por la organización. Son diferentes de los roles propios
+ * del servidor, que distinguen a los clientes de Ambiente de sus
+ * administradores.
+ *
+ * La idea es que una empresa pueda gestionar roles para sus usuarios y
+ * asignarles funciones diferentes a cada uno, según estime connveniente.
+ *
+ * @module role
+ * @category models
+ */
+
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+
+const RoleSchema = new Schema({
+  name: { type: String, required: true, default: '' },
+  organization: {
+    type: Schema.Types.ObjectId,
+    ref: 'Organization',
+    required: true,
+  },
+  can_manage_user: { type: Boolean, required: true, default: false },
+  can_manage_device: { type: Boolean, required: true, default: false },
+  can_manage_roles: { type: Boolean, required: true, default: false },
+  can_manage_reports: { type: Boolean, required: true, default: false },
+  can_view_device: { type: Boolean, required: true, default: false },
+})
+
+module.exports = mongoose.model('Role', RoleSchema)
+</code></pre>
+        </article>
+    </section>
 
 
 

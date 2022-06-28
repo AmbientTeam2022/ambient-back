@@ -5,7 +5,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> HabitatController</title>
+  <title> user</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -101,7 +101,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Module</p>
-                    <h1>HabitatController</h1>
+                    <h1>user</h1>
                 </header>
                 
 
@@ -113,6 +113,8 @@
 <header>
     
         
+            
+        
     
 </header>
 
@@ -120,6 +122,88 @@
     <div class="container-overview">
     
         
+            <div class="description"><p>Usuario</p>
+<p>Modelo con los datos de usuario. Estos pueden gestionar
+dispositivos para la organización a la que pertenecen.</p></div>
+        
+
+        
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="models_user.js.html" class="button">View Source</a>
+            <span>
+                <a href="models_user.js.html">models/user.js</a>, <a href="models_user.js.html#line1">line 1</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         
     
@@ -148,18 +232,16 @@
 
 
     
-    <h4 class="name" id=".listHabitats">
-        <a class="href-link" href="#.listHabitats">#</a>
+    <h4 class="name" id="~comparePassword">
+        <a class="href-link" href="#~comparePassword">#</a>
         
             
-                <span class='tag'>async</span>
-            
-                <span class='tag'>static</span>
+                <span class='tag'>inner</span>
             
         
         <span class="code-name">
             
-                listHabitats<span class="signature">()</span><span class="type-signature"></span>
+                comparePassword<span class="signature">(password, cb)</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -168,9 +250,188 @@
     
     
     <div class="description">
-        <p><code class="get-ep">GET /habitat/</code>
-Obtiene la lista de ambientes</p>
-<p>Devuelve la lista de ambientes asignados a la organización del usuario autenticado.</p>
+        <p>Compara la contraseña ingresada con la almacenada</p>
+<p>El modelo no almacena contraseñas directamente, sino el <em>hash</em> y la <em>salt</em>
+generadas con el algoritmo bcrypt. Este mismo se utiliza para comparar en
+este método.</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>password</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">String</code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>Contraseña del usuario en plain text</p></td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>cb</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">function</code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>Callback function llamada al terminar</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="models_user.js.html" class="button">View Source</a>
+            <span>
+                <a href="models_user.js.html">models/user.js</a>, <a href="models_user.js.html#line44">line 44</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="~createOrganization">
+        <a class="href-link" href="#~createOrganization">#</a>
+        
+            
+                <span class='tag'>inner</span>
+            
+        
+        <span class="code-name">
+            
+                createOrganization<span class="signature">()</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Crea una organización personal para el usuario</p>
+<p>Utilizado para generar la organización de usuarios nuevos.</p>
     </div>
     
 
@@ -219,9 +480,9 @@ Obtiene la lista de ambientes</p>
 
     
         <p class="tag-source">
-            <a href="controllers_HabitatController.js.html" class="button">View Source</a>
+            <a href="models_user.js.html" class="button">View Source</a>
             <span>
-                <a href="controllers_HabitatController.js.html">controllers/HabitatController.js</a>, <a href="controllers_HabitatController.js.html#line14">line 14</a>
+                <a href="models_user.js.html">models/user.js</a>, <a href="models_user.js.html#line62">line 62</a>
             </span>
         </p>
     

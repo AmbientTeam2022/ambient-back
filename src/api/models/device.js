@@ -1,3 +1,16 @@
+/**
+ * Dispositivo
+ *
+ * Corresponde al dispositivo físico. Posee sus datos de configuración,
+ * así como sus parámetros y las lecturas actuales de sus sensores.
+ *
+ * Cada registro debe crearse al momento de fabricar un dispositivo.
+ * Este quedará permanentemente disponible para ser agregado a una organización.
+ *
+ * @module device
+ * @category models
+ */
+
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const Category = require('../models/category')

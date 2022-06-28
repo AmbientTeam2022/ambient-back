@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> HabitatController</title>
+  <title> models/location.js</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -93,172 +95,50 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"></div><div class="category"><h2>controllers</h2><h3>Modules</h3><ul><li><a href="module-AuthController.html">AuthController</a></li><li><a href="module-DeviceController.html">DeviceController</a></li><li><a href="module-HabitatController.html">HabitatController</a></li></ul></div><div class="category"><h2>middleware</h2><h3>Modules</h3><ul><li><a href="module-allowCors.html">allowCors</a></li><li><a href="module-authRequired.html">authRequired</a></li></ul></div><div class="category"><h2>models</h2><h3>Modules</h3><ul><li><a href="module-category.html">category</a></li><li><a href="module-device.html">device</a></li><li><a href="module-folder.html">folder</a></li><li><a href="module-habitat.html">habitat</a></li><li><a href="module-organization.html">organization</a></li><li><a href="module-role.html">role</a></li><li><a href="module-user.html">user</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"></div><div class="category"><h2>controllers</h2><h3>Modules</h3><ul><li><a href="module-AuthController.html">AuthController</a></li><li><a href="module-DeviceController.html">DeviceController</a></li><li><a href="module-HabitatController.html">HabitatController</a></li></ul></div><div class="category"><h2>middleware</h2><h3>Modules</h3><ul><li><a href="module-allowCors.html">allowCors</a></li><li><a href="module-authRequired.html">authRequired</a></li></ul></div><div class="category"><h2>models</h2><h3>Modules</h3><ul><li><a href="module-Category.html">Category</a></li><li><a href="module-Device.html">Device</a></li><li><a href="module-Folder.html">Folder</a></li><li><a href="module-Habitat.html">Habitat</a></li><li><a href="module-Location.html">Location</a></li></ul></div>
                 
             </nav>
         </div>
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p>Module</p>
-                    <h1>HabitatController</h1>
+                    <p>Source</p>
+                    <h1>models/location.js</h1>
                 </header>
                 
 
 
 
-
-<section>
-
-<header>
     
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-
-        
-    
-    </div>
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <div class='vertical-section'>
-            <h1>Methods</h1>
-            <div class="members">
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id=".listHabitats">
-        <a class="href-link" href="#.listHabitats">#</a>
-        
-            
-                <span class='tag'>async</span>
-            
-                <span class='tag'>static</span>
-            
-        
-        <span class="code-name">
-            
-                listHabitats<span class="signature">()</span><span class="type-signature"></span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        <p><code class="get-ep">GET /habitat/</code>
-Obtiene la lista de ambientes</p>
-<p>Devuelve la lista de ambientes asignados a la organización del usuario autenticado.</p>
-    </div>
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="controllers_HabitatController.js.html" class="button">View Source</a>
-            <span>
-                <a href="controllers_HabitatController.js.html">controllers/HabitatController.js</a>, <a href="controllers_HabitatController.js.html#line14">line 14</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-            
-            </div>
-        </div>
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Ubicación
+ *
+ * En desuso. Se decidió eliminar el modelo al ser redundante con las carpetas.
+ *
+ * @module Location
+ * @category models
+ */
+
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+
+const LocationSchema = new Schema({
+  name: { type: String, required: true, default: '' },
+  organization: {
+    type: Schema.Types.ObjectId,
+    Oref: 'Organization',
+    required: true,
+  },
+})
+
+module.exports = mongoose.model('Location', LocationSchema)
+
+// TODO: eliminar este archivo, modelo descontinuado
+</code></pre>
+        </article>
+    </section>
 
 
 

@@ -1,3 +1,17 @@
+/**
+ * Organización
+ *
+ * Corresponde a la empresa, institución o grupo del usuario.
+ * La organización es la que posee y gestiona los dispositivos.
+ * Los usuarios asociados a una organización reciben acceso a ellos.
+ *
+ * Por defecto, al crear un usuario se genera una organización personal
+ * para el mismo.
+ *
+ * @module organization
+ * @category models
+ */
+
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 

@@ -95,7 +95,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"></div><div class="category"><h2>controllers</h2><h3>Modules</h3><ul><li><a href="module-AuthController.html">AuthController</a></li><li><a href="module-DeviceController.html">DeviceController</a></li><li><a href="module-HabitatController.html">HabitatController</a></li></ul></div><div class="category"><h2>middleware</h2><h3>Modules</h3><ul><li><a href="module-allowCors.html">allowCors</a></li><li><a href="module-authRequired.html">authRequired</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"></div><div class="category"><h2>controllers</h2><h3>Modules</h3><ul><li><a href="module-AuthController.html">AuthController</a></li><li><a href="module-DeviceController.html">DeviceController</a></li><li><a href="module-HabitatController.html">HabitatController</a></li></ul></div><div class="category"><h2>middleware</h2><h3>Modules</h3><ul><li><a href="module-allowCors.html">allowCors</a></li><li><a href="module-authRequired.html">authRequired</a></li></ul></div><div class="category"><h2>models</h2><h3>Modules</h3><ul><li><a href="module-category.html">category</a></li><li><a href="module-device.html">device</a></li><li><a href="module-folder.html">folder</a></li><li><a href="module-habitat.html">habitat</a></li><li><a href="module-organization.html">organization</a></li><li><a href="module-role.html">role</a></li><li><a href="module-user.html">user</a></li></ul></div>
                 
             </nav>
         </div>
@@ -112,7 +112,20 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const mongoose = require('mongoose')
+            <pre class="prettyprint source linenums"><code>/**
+ * Dispositivo
+ *
+ * Corresponde al dispositivo físico. Posee sus datos de configuración,
+ * así como sus parámetros y las lecturas actuales de sus sensores.
+ *
+ * Cada registro debe crearse al momento de fabricar un dispositivo.
+ * Este quedará permanentemente disponible para ser agregado a una organización.
+ *
+ * @module device
+ * @category models
+ */
+
+const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const Category = require('../models/category')
 

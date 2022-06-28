@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> HabitatController</title>
+  <title> models/folder.js</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -100,165 +102,41 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p>Module</p>
-                    <h1>HabitatController</h1>
+                    <p>Source</p>
+                    <h1>models/folder.js</h1>
                 </header>
                 
 
 
 
-
-<section>
-
-<header>
     
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-
-        
-    
-    </div>
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <div class='vertical-section'>
-            <h1>Methods</h1>
-            <div class="members">
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id=".listHabitats">
-        <a class="href-link" href="#.listHabitats">#</a>
-        
-            
-                <span class='tag'>async</span>
-            
-                <span class='tag'>static</span>
-            
-        
-        <span class="code-name">
-            
-                listHabitats<span class="signature">()</span><span class="type-signature"></span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        <p><code class="get-ep">GET /habitat/</code>
-Obtiene la lista de ambientes</p>
-<p>Devuelve la lista de ambientes asignados a la organización del usuario autenticado.</p>
-    </div>
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="controllers_HabitatController.js.html" class="button">View Source</a>
-            <span>
-                <a href="controllers_HabitatController.js.html">controllers/HabitatController.js</a>, <a href="controllers_HabitatController.js.html#line14">line 14</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-            
-            </div>
-        </div>
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Carpeta
+ *
+ * Permite organizar los ambientes en carpetas. Las carpetas pertenecen a una organización.
+ *
+ * @module folder
+ * @category models
+ */
+
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+
+const FolderSchema = new Schema({
+  name: { type: String, required: true, default: '' },
+  Organization: {
+    type: Schema.Types.ObjectId,
+    ref: 'Organization',
+    required: true,
+  }, // fk de Organization
+})
+
+module.exports = mongoose.model('Folder', FolderSchema)
+</code></pre>
+        </article>
+    </section>
 
 
 

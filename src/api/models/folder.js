@@ -1,3 +1,12 @@
+/**
+ * Carpeta
+ *
+ * Permite organizar los ambientes en carpetas. Las carpetas pertenecen a una organización.
+ *
+ * @module folder
+ * @category models
+ */
+
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 

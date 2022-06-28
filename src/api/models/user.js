@@ -1,3 +1,13 @@
+/**
+ * Usuario
+ *
+ * Modelo con los datos de usuario. Estos pueden gestionar
+ * dispositivos para la organización a la que pertenecen.
+ *
+ * @module user
+ * @category models
+ */
+
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const Schema = mongoose.Schema
@@ -31,6 +41,17 @@ const UserSchema = new Schema({
   },
 })
 
+/**
+ * Compara la contraseña ingresada con la almacenada
+ *
+ * El modelo no almacena contraseñas directamente, sino el _hash_ y la _salt_
+ * generadas con el algoritmo bcrypt. Este mismo se utiliza para comparar en
+ * este método.
+ *
+ * @method comparePassword
+ * @param {String} password Contraseña del usuario en plain text
+ * @param {Function} cb Callback function llamada al terminar
+ */
 UserSchema.methods.comparePassword = function (password, cb) {
   bcrypt.compare(password, this.passwordHash, (err, same) => {
     if (err) return cb(err)
@@ -38,6 +59,13 @@ UserSchema.methods.comparePassword = function (password, cb) {
   })
 }
 
+/**
+ * Crea una organización personal para el usuario
+ *
+ * Utilizado para generar la organización de usuarios nuevos.
+ *
+ * @method createOrganization
+ */
 UserSchema.methods.createOrganization = function () {
   this.organization = new Organization({
     name: this.username,

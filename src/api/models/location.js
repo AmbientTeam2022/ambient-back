@@ -1,3 +1,13 @@
+/**
+ * Ubicación
+ *
+ * En desuso. Se decidió eliminar el modelo al ser redundante con las carpetas.
+ *
+ * @module location
+ * @category models
+ * @ignore
+ */
+
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
