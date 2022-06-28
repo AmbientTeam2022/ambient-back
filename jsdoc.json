@@ -24,7 +24,7 @@
       "name": "Documentación ambient-back",
       "logo": "img/logo.png",
       "css": "styles/custom.css",
-      "navlinks": [
+      "navLinks": [
         {
           "label": "Documentación de la API",
           "href": "/api-docs"
