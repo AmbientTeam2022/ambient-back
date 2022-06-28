@@ -5,7 +5,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> device</title>
+  <title> server</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -101,7 +101,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Module</p>
-                    <h1>device</h1>
+                    <h1>server</h1>
                 </header>
                 
 
@@ -112,20 +112,36 @@
 
 <header>
     
+        
+            
+        
+    
 </header>
 
 <article>
     <div class="container-overview">
     
         
-            <div class="description"><p>Dispositivo</p>
-<p>Corresponde al dispositivo físico. Posee sus datos de configuración,
-así como sus parámetros y las lecturas actuales de sus sensores.</p>
-<p>Cada registro debe crearse al momento de fabricar un dispositivo.
-Este quedará permanentemente disponible para ser agregado a una organización.</p></div>
+            <div class="description"><p>Módulo principal de la aplicación</p>
+<p>Punto de entrada de la aplicación que levanta el servidor.
+Aplica opciones de configuración, acopla las otras partes de la
+app Express, e inicia el servicio en el puerto indicado.</p></div>
         
 
         
+            
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <dl class="details">
@@ -161,13 +177,33 @@ Este quedará permanentemente disponible para ser agregado a una organización.<
 
     
         <p class="tag-source">
-            <a href="api_models_device.js.html" class="button">View Source</a>
+            <a href="server.js.html" class="button">View Source</a>
             <span>
-                <a href="api_models_device.js.html">api/models/device.js</a>, <a href="api_models_device.js.html#line1">line 1</a>
+                <a href="server.js.html">server.js</a>, <a href="server.js.html#line1">line 1</a>
             </span>
         </p>
     
 </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         
@@ -187,7 +223,277 @@ Este quedará permanentemente disponible para ser agregado a una organización.<
     
 
     
+        <div class='vertical-section'>
+            <h1>Members</h1>
+            <div class="members">
+            
+                <div class="member">
 
+<h4 class="name" id="~autogenCallback">
+    <a class="href-link" href="#~autogenCallback">#</a>
+    
+        
+            <span class='tag'>inner</span>
+        
+    
+    <span class="code-name">
+        autogenCallback
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    <p>Invoca la librería que autogenera la documentación de la API (Swagger/OpenAPI). Posteriormente
+genera la ruta que lleva a la documentación y la acopla a la aplicación.</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="server.js.html" class="button">View Source</a>
+            <span>
+                <a href="server.js.html">server.js</a>, <a href="server.js.html#line51">line 51</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+<h4 class="name" id="~enableCors">
+    <a class="href-link" href="#~enableCors">#</a>
+    
+        
+            <span class='tag'>inner</span>
+        
+    
+    <span class="code-name">
+        enableCors
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    <p>Habilita CORS (Cross-Origin Resource Sharing) indicando cuáles son
+las direcciones de confianza desde donde se originarán las solicitudes.
+Cualquier solicitud proveniente de otras direcciones IP serán rechazadas.
+Esto solo aplica a los endpoints de la API, y pueden añadirse excepciones.</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="server.js.html" class="button">View Source</a>
+            <span>
+                <a href="server.js.html">server.js</a>, <a href="server.js.html#line31">line 31</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+            </div>
+        </div>
+    
+
+    
+        <div class='vertical-section'>
+            <h1>Methods</h1>
+            <div class="members">
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="~start">
+        <a class="href-link" href="#~start">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+                <span class='tag'>inner</span>
+            
+        
+        <span class="code-name">
+            
+                start<span class="signature">()</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Inicia la aplicación</p>
+<p>Llama a generar el panel de admin y conectar a la base de datos.
+Una vez finalizado comienza a escuchar en el puerto indicado, o en el
+3000 si no se indicó ningún puerto.</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="server.js.html" class="button">View Source</a>
+            <span>
+                <a href="server.js.html">server.js</a>, <a href="server.js.html#line86">line 86</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+            </div>
+        </div>
     
 
     
