@@ -7,3 +7,28 @@
   height: 46px;
   width: auto;
 }
+
+code.get-ep {
+  color: white;
+  background-color: dodgerblue;
+}
+
+code.post-ep {
+  color: white;
+  background-color: limegreen;
+}
+
+code.delete-ep {
+  color: white;
+  background-color: crimson;
+}
+
+code.put-ep {
+  color: white;
+  background-color: orange;
+}
+
+code.patch-ep {
+  color: white;
+  background-color: darkturquoise;
+}

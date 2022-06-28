@@ -5,7 +5,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> AuthController</title>
+  <title> HabitatController</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -82,7 +82,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Module</p>
-                    <h1>AuthController</h1>
+                    <h1>HabitatController</h1>
                 </header>
                 
 
@@ -129,8 +129,8 @@
 
 
     
-    <h4 class="name" id=".login">
-        <a class="href-link" href="#.login">#</a>
+    <h4 class="name" id=".listHabitats">
+        <a class="href-link" href="#.listHabitats">#</a>
         
             
                 <span class='tag'>async</span>
@@ -140,7 +140,7 @@
         
         <span class="code-name">
             
-                login<span class="signature">()</span><span class="type-signature"></span>
+                listHabitats<span class="signature">()</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -149,10 +149,9 @@
     
     
     <div class="description">
-        <p><code class="post-ep">POST /auth/login/</code>
-Inicia sesión</p>
-<p>Si las credenciales son correctas, envía al cliente los datos del usuario y un token JWT de autorización.
-Caso contrario arroja un error.</p>
+        <p><code class="get-ep">GET /habitat/</code>
+Obtiene la lista de ambientes</p>
+<p>Devuelve la lista de ambientes asignados a la organización del usuario autenticado.</p>
     </div>
     
 
@@ -201,221 +200,9 @@ Caso contrario arroja un error.</p>
 
     
         <p class="tag-source">
-            <a href="controllers_AuthController.js.html" class="button">View Source</a>
+            <a href="controllers_HabitatController.js.html" class="button">View Source</a>
             <span>
-                <a href="controllers_AuthController.js.html">controllers/AuthController.js</a>, <a href="controllers_AuthController.js.html#line18">line 18</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id=".logout">
-        <a class="href-link" href="#.logout">#</a>
-        
-            
-                <span class='tag'>async</span>
-            
-                <span class='tag'>static</span>
-            
-        
-        <span class="code-name">
-            
-                logout<span class="signature">()</span><span class="type-signature"></span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        <p><code class="post-ep">POST /auth/logout/</code>
-Cierra sesión</p>
-<p><strong>SIN IMPLEMENTAR</strong></p>
-<p>Expira forzosamente el token actual del usuario.</p>
-    </div>
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="controllers_AuthController.js.html" class="button">View Source</a>
-            <span>
-                <a href="controllers_AuthController.js.html">controllers/AuthController.js</a>, <a href="controllers_AuthController.js.html#line129">line 129</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id=".register">
-        <a class="href-link" href="#.register">#</a>
-        
-            
-                <span class='tag'>async</span>
-            
-                <span class='tag'>static</span>
-            
-        
-        <span class="code-name">
-            
-                register<span class="signature">()</span><span class="type-signature"></span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        <p><code class="post-ep">POST /auth/register/</code>
-Crea un nuevo usuario</p>
-<p>Encripta la contraseña generando un <em>hash</em> y una <em>salt</em> con el algoritmo <code>bcrypt</code> y los almacena.
-También crea una organización vacía para el usuario con su <code>username</code>.</p>
-    </div>
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="controllers_AuthController.js.html" class="button">View Source</a>
-            <span>
-                <a href="controllers_AuthController.js.html">controllers/AuthController.js</a>, <a href="controllers_AuthController.js.html#line68">line 68</a>
+                <a href="controllers_HabitatController.js.html">controllers/HabitatController.js</a>, <a href="controllers_HabitatController.js.html#line14">line 14</a>
             </span>
         </p>
     

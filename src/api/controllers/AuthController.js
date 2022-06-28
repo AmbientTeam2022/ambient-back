@@ -8,8 +8,11 @@ const { createToken } = require('../util/auth')
 const bcrypt = require('bcrypt')
 
 /**
- * Endpoint <code style="color: blue">POST /login/</code>
- * Inicia sesión y devuelve al usuario y el token JWT de autorización.
+ * <code class="post-ep">POST /auth/login/</code>
+ * Inicia sesión
+ *
+ * Si las credenciales son correctas, envía al cliente los datos del usuario y un token JWT de autorización.
+ * Caso contrario arroja un error.
  * @static
  */
 const login = async (req, res) => {
@@ -55,7 +58,12 @@ const login = async (req, res) => {
 }
 
 /**
- * POST /register/
+ * <code class="post-ep">POST /auth/register/</code>
+ * Crea un nuevo usuario
+ *
+ * Encripta la contraseña generando un _hash_ y una _salt_ con el algoritmo `bcrypt` y los almacena.
+ * También crea una organización vacía para el usuario con su `username`.
+ * @static
  */
 const register = async (req, res) => {
   /* #swagger.tags = ['Auth']
@@ -109,6 +117,15 @@ const register = async (req, res) => {
     })
 }
 
+/**
+ * <code class="post-ep">POST /auth/logout/</code>
+ * Cierra sesión
+ *
+ * **SIN IMPLEMENTAR**
+ *
+ * Expira forzosamente el token actual del usuario.
+ * @static
+ */
 const logout = async (req, res) => {
   /* #swagger.tags = ['Auth']
     #swagger.summary = 'Cierra la sesión del usuario'

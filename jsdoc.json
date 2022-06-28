@@ -23,7 +23,17 @@
     "better-docs": {
       "name": "Documentación ambient-back",
       "logo": "img/logo.png",
-      "css": "styles/custom.css"
+      "css": "styles/custom.css",
+      "navlinks": [
+        {
+          "label": "Documentación de la API",
+          "href": "/api-docs"
+        },
+        {
+          "label": "Panel de Admin",
+          "href": "/admin"
+        }
+      ]
     }
   }
 }
