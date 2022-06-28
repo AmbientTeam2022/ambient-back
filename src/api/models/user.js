@@ -5,6 +5,7 @@
  * dispositivos para la organización a la que pertenecen.
  *
  * @module user
+ * @memberof models
  * @category models
  */
 

@@ -6,6 +6,7 @@
  * valores iniciales (mínimo y máximo).
  *
  * @module category
+ * @memberof models
  * @category models
  */
 

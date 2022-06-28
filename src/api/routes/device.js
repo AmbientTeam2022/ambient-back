@@ -1,3 +1,14 @@
+/**
+ * Rutas relacionadas al dispositivo
+ * <br /><br />
+ *
+ * @module device
+ * @category routes
+ * @memberof routes
+ * @see {@link module:DeviceController|DeviceController} para ver cada ruta y sus métodos
+ * @see {@link models.module:device|device} para ver el modelo
+ */
+
 const express = require('express')
 const DeviceController = require('../controllers/DeviceController')
 const { authRequired } = require('../middleware/authRequired')

@@ -9,6 +9,7 @@
  * para el mismo.
  *
  * @module organization
+ * @memberof models
  * @category models
  */
 

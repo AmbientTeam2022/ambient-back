@@ -1,3 +1,13 @@
+/**
+ * Rutas relacionadas a la autentificación y autorización del usuario
+ * <br /><br />
+ *
+ * @module auth
+ * @category routes
+ * @memberof routes
+ * @see {@link module:AuthController|AuthController} para ver cada ruta y sus métodos
+ */
+
 const express = require('express')
 const AuthController = require('../controllers/AuthController')
 

@@ -10,6 +10,7 @@
  * asignarles funciones diferentes a cada uno, según estime connveniente.
  *
  * @module role
+ * @memberof models
  * @category models
  */
 

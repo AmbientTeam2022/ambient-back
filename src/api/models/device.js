@@ -8,6 +8,7 @@
  * Este quedará permanentemente disponible para ser agregado a una organización.
  *
  * @module device
+ * @memberof models
  * @category models
  */
 

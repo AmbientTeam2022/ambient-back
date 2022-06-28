@@ -4,6 +4,7 @@
  * En desuso. Se decidió eliminar el modelo al ser redundante con las carpetas.
  *
  * @module location
+ * @memberof models
  * @category models
  * @ignore
  */

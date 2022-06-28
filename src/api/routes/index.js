@@ -1,3 +1,14 @@
+/**
+ * Módulo de Express Router
+ *
+ * Importa las otras rutas y exporta un objeto de `express` que puede
+ * acoplarse a la app.
+ *
+ * @module index
+ * @category routes
+ * @memberof routes
+ */
+
 const express = require('express')
 // const { adminJs, router } = require('./adminJs')
 const authRouter = require('./auth')

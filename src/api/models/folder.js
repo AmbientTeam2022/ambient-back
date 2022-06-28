@@ -4,6 +4,7 @@
  * Permite organizar los ambientes en carpetas. Las carpetas pertenecen a una organización.
  *
  * @module folder
+ * @memberof models
  * @category models
  */
 

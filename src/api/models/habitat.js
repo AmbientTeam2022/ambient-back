@@ -6,6 +6,7 @@
  * Además, los ambientes se pueden ubicar en carpetas.
  *
  * @module habitat
+ * @memberof models
  * @category models
  */
 

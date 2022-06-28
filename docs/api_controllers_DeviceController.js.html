@@ -1,0 +1,429 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> api/controllers/DeviceController.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="styles/custom.css">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+             
+                <a class="image" href="index.html">
+                    <img src="img/logo.png" alt="logo">
+                </a>
+            
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                 
+                    
+                        <a
+                            class="link user-link "
+                            href="/api-docs"
+                        >
+                            Documentación API
+                        </a>
+                    
+                        <a
+                            class="link user-link "
+                            href="/admin"
+                        >
+                            Panel de Admin
+                        </a>
+                    
+                        <a
+                            class="link user-link "
+                            href="https://github.com/AmbientTeam2022/ambient-back"
+                        >
+                            Código fuente
+                        </a>
+                    
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-adminJs.html">adminJs</a></li></ul></div><div class="category"><h2>controllers</h2><h3>Modules</h3><ul><li><a href="module-AuthController.html">AuthController</a></li><li><a href="module-DeviceController.html">DeviceController</a></li><li><a href="module-HabitatController.html">HabitatController</a></li></ul></div><div class="category"><h2>middleware</h2><h3>Modules</h3><ul><li><a href="module-allowCors.html">allowCors</a></li><li><a href="module-authRequired.html">authRequired</a></li></ul></div><div class="category"><h2>models</h2><h3>Modules</h3><ul><li><a href="models.module_category.html">category</a></li><li><a href="models.module_device.html">device</a></li><li><a href="models.module_folder.html">folder</a></li><li><a href="models.module_habitat.html">habitat</a></li><li><a href="models.module_organization.html">organization</a></li><li><a href="models.module_role.html">role</a></li><li><a href="models.module_user.html">user</a></li></ul></div><div class="category"><h2>routes</h2><h3>Modules</h3><ul><li><a href="routes.module_auth.html">auth</a></li><li><a href="routes.module_device.html">device</a></li><li><a href="routes.module_habitat.html">habitat</a></li><li><a href="routes.module_index.html">index</a></li></ul></div><div class="category"><h2>util</h2><h3>Modules</h3><ul><li><a href="util.module_auth.html">auth</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>api/controllers/DeviceController.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module DeviceController
+ * @category controllers
+ */
+const Device = require('../models/device')
+
+/**
+ * &lt;code class="get-ep">GET /device/&lt;/code>
+ * Obtiene la lista de dispositivos
+ *
+ * Devuelve la lista de dispositivos asignados a la organización del usuario autenticado.
+ * @static
+ */
+const listDevices = async (req, res) => {
+  /* #swagger.tags = ['Device']
+    #swagger.summary = 'Obtiene la lista de dispositivos'
+   */
+  const organization = req.user.organization
+  const all = await Device.find({ organization }).populate('category habitat')
+  res.json(all)
+}
+
+/**
+ * &lt;code class="get-ep">GET /device/{uuid}/&lt;/code>
+ * Obtiene los datos de un dispositivo
+ *
+ * Solo devuelve datos si el dispositivo pertenece a la misma organización que el usuario.
+ * @static
+ */
+const getDevice = async (req, res) => {
+  /* #swagger.tags = ['Device']
+    #swagger.summary = 'Obtiene un dispositivo por su UUID'
+    #swagger.parameters['uuid'] = {
+      description: 'Identificador único UUID del dispositivo',
+    }
+   */
+  const { uuid } = req.params
+  const { organization } = req.user
+  const device = await Device.findOne({ uuid, organization }).populate(
+    'category habitat',
+  )
+  if (!device) {
+    return res
+      .status(404)
+      .json({ msg: 'No se encontró el dispositivo en su organización' })
+  }
+  res.json(device)
+}
+
+/**
+ * &lt;code class="post-ep">POST /device/&lt;/code>
+ * Crea un dispositivo
+ *
+ * (sin uso actualmente, se crean desde el admin panel)
+ * @static
+ * @ignore
+ */
+const createDevice = async (req, res) => {
+  /* #swagger.tags = ['Device']
+    #swagger.summary = 'Crea un nuevo dispositivo'
+    #swagger.parameters['body'] = {
+      in: 'body',
+      description: 'Cuerpo de la solicitud',
+      schema: {
+        $uuid: '1234',
+        $name: 'Sapitos',
+        $icon: '04',
+        $category: 1,
+        $habitat: 3,
+      }
+    }
+   */
+  // const { uuid, name, icon, category, habitat } = req.body
+  // const data = { uuid, name, icon, category, habitat }
+  const data = req.body
+
+  const device = new Device(data)
+  device
+    .save()
+    .then((device) => {
+      return res.json({ device })
+    })
+    .catch((err) => {
+      return res.json(err)
+    })
+}
+
+/**
+ * &lt;code class="put-ep">PUT /device/&lt;/code>
+ * Modifica un dispositivo
+ *
+ * (sin uso actualmente, work-in-progress)
+ * @static
+ * @ignore
+ */
+const updateDevice = async (req, res) => {
+  /* #swagger.tags = ['Device']
+    #swagger.summary = 'Modifica un dispositivo existente'
+    #swagger.parameters['uuid'] = {
+      description: 'Identificador único UUID del dispositivo',
+    }
+   */
+  const uuid = req.params.uuid
+  const organization = req.user.organization
+
+  Device.findOneAndUpdate({ uuid, organization }, req.body)
+    .then((device) => {
+      return res.json({ device })
+    })
+    .catch((err) => {
+      return res.json(err)
+    })
+}
+
+/**
+ * &lt;code class="delete-ep">DELETE /device/{uuid}/&lt;/code>
+ * Eliminar un dispositivo de una organización
+ *
+ * Remueve la organización y cualquier ambiente asignado al dispositivo.
+ * Requiere que el usuario autenticado pertenezca a la misma origanización.
+ * @static
+ * @ignore
+ */
+const deleteDevice = async (req, res) => {
+  /* #swagger.tags = ['Device']
+    #swagger.summary = 'Eliminar un dispositivo (soft-delete)'
+    #swagger.parameters['uuid'] = {
+      description: 'Identificador único UUID del dispositivo',
+    }
+   */
+  const uuid = req.params.uuid
+  const organization = req.user.organization
+
+  const device = await Device.findOne({ uuid, organization })
+  if (!device) {
+    return res.status(403).json({
+      msg: 'El dispositivo no se encontró o no está autorizado',
+    })
+  }
+
+  device.organization = undefined
+  device.habitat = undefined
+  device
+    .save()
+    .then(() => {
+      return res.json({ device })
+    })
+    .catch((err) => {
+      return res.json(err)
+    })
+}
+
+/**
+ * &lt;code class="post-ep">POST /device/&lt;/code>
+ * Obtiene los datos de un dispositivo
+ *
+ * Recibe el `UUID` y la `Contraseña` del dispositivo.
+ * Si las credenciales no son correctas no entrega los datos.
+ * Si el dispositivo pertenece a una organización que no es la del usuario, tampoco entrega datos.
+ * @static
+ */
+const getNewDevice = async (req, res) => {
+  /* #swagger.tags = ['Device']
+    #swagger.summary = 'Obtiene un dispositivo usando sus credenciales'
+    #swagger.parameters['body'] = {
+      in: 'body',
+      description: 'Cuerpo de la solicitud',
+      schema: {
+        $uuid: '1234-1234-1234',
+        $password: 'asd123',
+      }
+    }
+   */
+  const { uuid, password } = req.body
+  const device = await Device.findOne({ uuid, password }).populate(
+    'category habitat',
+  )
+  if (!device) {
+    return res.status(403).json({
+      msg: 'UUID o contraseña incorrectos',
+    })
+  }
+  const organization = req.user.organization
+  if (!!device.organization &amp;&amp; !device.organization.equals(organization._id)) {
+    return res.status(403).json({
+      msg: 'El dispositivo ya pertenece a otra organización',
+    })
+  }
+  res.json(device)
+}
+
+/**
+ * &lt;code class="patch-ep">PATCH /device/add/{uuid}&lt;/code>
+ * Agrega el dispositivo a la organización del usuario.
+ *
+ * Recibe el `UUID` y la `Contraseña` del dispositivo.
+ * Si las credenciales no son correctas no hace ningún cambio.
+ * @static
+ */
+const addToOrganization = async (req, res) => {
+  /* #swagger.tags = ['Device']
+    #swagger.summary = 'Modifica un dispositivo existente'
+    #swagger.parameters['uuid'] = {
+      description: 'Identificador único UUID del dispositivo',
+    }
+   */
+  const { uuid } = req.params
+  const { name, param, habitat, password } = req.body
+  const organization = req.user.organization
+
+  const data = { organization, name, habitat, param }
+
+  Device.findOneAndUpdate({ uuid, password }, data)
+    .then((device) => {
+      return res.json({ device })
+    })
+    .catch((err) => {
+      return res.json(err)
+    })
+}
+
+/**
+ * &lt;code class="patch-ep">PATCH /device/&lt;/code>
+ * Obtiene los datos de un dispositivo
+ *
+ * Endpoint dirigido al dispositivo Arduino para que actualice los datos de sus sensores.
+ *
+ * Recibe el `UUID` y la `Contraseña` del dispositivo.
+ * Si las credenciales no son correctas no hace ningún cambio.
+ * Solo actualiza los valores de los sensores ya definido, de modo que no permite
+ * agregar o quitar sensores a través de este endpoint.
+ * @static
+ */
+const updateSensors = async (req, res) => {
+  /* #swagger.tags = ['Device']
+    #swagger.summary = 'Envía datos de los sensores'
+    #swagger.parameters['uuid'] = {
+      description: 'Identificador único UUID del dispositivo',
+    }
+    #swagger.parameters['body'] = {
+      in: 'body',
+      description: 'Cuerpo de la solicitud',
+      schema: {
+        $password: 'asd123',
+        $sensor: [
+          {
+            name: 'temperature',
+            value: 22
+          }
+        ]
+      }
+    }
+   */
+  const { uuid } = req.params
+  const { password, sensor: sensorData } = req.body
+
+  const device = await Device.findOne({ uuid, password }).populate('sensor')
+  console.log(device)
+  console.log(sensorData)
+
+  sensorData.forEach((newSensor) => {
+    const i = device.sensor.findIndex((s) => s.name === newSensor.name)
+    device.sensor[i] = newSensor
+  })
+
+  device
+    .save()
+    .then(() => {
+      return res.json({ device })
+    })
+    .catch((err) => {
+      return res.json(err)
+    })
+}
+
+module.exports = {
+  listDevices,
+  getDevice,
+  createDevice,
+  updateDevice,
+  deleteDevice,
+  getNewDevice,
+  addToOrganization,
+  updateSensors,
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>
