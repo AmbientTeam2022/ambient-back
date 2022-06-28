@@ -21,17 +21,20 @@
     "cleverLinks": false,
     "monospaceLinks": false,
     "better-docs": {
-      "name": "Documentación ambient-back",
       "logo": "img/logo.png",
       "css": "styles/custom.css",
       "navLinks": [
         {
-          "label": "Documentación de la API",
+          "label": "Documentación API",
           "href": "/api-docs"
         },
         {
           "label": "Panel de Admin",
           "href": "/admin"
+        },
+        {
+          "label": "Código fuente",
+          "href": "https://github.com/AmbientTeam2022/ambient-back"
         }
       ]
     }
