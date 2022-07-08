@@ -24,11 +24,11 @@ const RoleSchema = new Schema({
     ref: 'Organization',
     required: true,
   },
-  can_manage_user: { type: Boolean, required: true, default: false },
-  can_manage_device: { type: Boolean, required: true, default: false },
-  can_manage_roles: { type: Boolean, required: true, default: false },
-  can_manage_reports: { type: Boolean, required: true, default: false },
-  can_view_device: { type: Boolean, required: true, default: false },
+  canManageUsers: { type: Boolean, required: true, default: false },
+  canManageDevices: { type: Boolean, required: true, default: false },
+  canManageRoles: { type: Boolean, required: true, default: false },
+  canManageReports: { type: Boolean, required: true, default: false },
+  canViewDevices: { type: Boolean, required: true, default: false },
 })
 
 module.exports = mongoose.model('Role', RoleSchema)

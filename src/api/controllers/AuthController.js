@@ -34,7 +34,7 @@ const login = async (req, res) => {
     })
   }
 
-  const user = await User.findOne({ username }).populate('organization')
+  const user = await User.findOne({ username }).populate('organization role')
   if (!user) {
     return res.status(401).send({
       msg: 'Credenciales inválidas',

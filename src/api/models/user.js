@@ -74,4 +74,9 @@ UserSchema.methods.createOrganization = function () {
   this.organization.save()
 }
 
+// UserSchema.virtual('can_manage_users')
+//   .get(function () {
+
+//   })
+
 module.exports = mongoose.model('User', UserSchema)
