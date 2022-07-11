@@ -1,20 +1,20 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.0",
   "info": {
     "title": "Ambient REST API",
     "description": "Backend del proyecto Ambient",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
-  "basePath": "/api/",
+  "servers": [
+    {
+      "url": "http://localhost:3000/api/"
+    }
+  ],
   "tags": [
     {
       "name": "Auth",
       "description": "Autentificación y cuentas de usuario"
     }
-  ],
-  "schemes": [
-    "http"
   ],
   "paths": {
     "/auth/login/": {
@@ -24,36 +24,33 @@
         ],
         "summary": "Inicia sesión y devuelve al usuario y el token JWT de autorización",
         "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "description": "Cuerpo de la solicitud",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "username": {
-                  "type": "string",
-                  "example": "alanbrito"
-                },
-                "password": {
-                  "type": "string",
-                  "example": "12345"
-                }
-              },
-              "required": [
-                "username",
-                "password"
-              ]
-            }
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
           },
           "401": {
             "description": "Unauthorized"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "in": {
+                    "example": "any"
+                  },
+                  "description": {
+                    "example": "any"
+                  },
+                  "schema": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -65,40 +62,7 @@
         ],
         "summary": "Crea un nuevo usuario",
         "description": "Genera un hash + salt de contraseña. También crea una organización vacía para el usuario.",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "description": "Cuerpo de la solicitud",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "username": {
-                  "type": "string",
-                  "example": "alanbrito"
-                },
-                "password": {
-                  "type": "string",
-                  "example": "12345"
-                },
-                "firstName": {
-                  "type": "string",
-                  "example": "Alan"
-                },
-                "lastName": {
-                  "type": "string",
-                  "example": "Brito"
-                }
-              },
-              "required": [
-                "username",
-                "password",
-                "firstName",
-                "lastName"
-              ]
-            }
-          }
-        ],
+        "parameters": [],
         "responses": {
           "201": {
             "description": "Created"
@@ -108,6 +72,26 @@
           },
           "500": {
             "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "in": {
+                    "example": "any"
+                  },
+                  "description": {
+                    "example": "any"
+                  },
+                  "schema": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -148,7 +132,9 @@
           {
             "name": "Authorization",
             "in": "header",
-            "type": "string"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -173,13 +159,17 @@
             "name": "uuid",
             "in": "path",
             "required": true,
-            "type": "string",
+            "schema": {
+              "type": "string"
+            },
             "description": "Identificador único UUID del dispositivo"
           },
           {
             "name": "Authorization",
             "in": "header",
-            "type": "string"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -205,13 +195,17 @@
             "name": "uuid",
             "in": "path",
             "required": true,
-            "type": "string",
+            "schema": {
+              "type": "string"
+            },
             "description": "Identificador único UUID del dispositivo"
           },
           {
             "name": "Authorization",
             "in": "header",
-            "type": "string"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -238,28 +232,8 @@
           {
             "name": "Authorization",
             "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "description": "Cuerpo de la solicitud",
             "schema": {
-              "type": "object",
-              "properties": {
-                "uuid": {
-                  "type": "string",
-                  "example": "1234-1234-1234"
-                },
-                "password": {
-                  "type": "string",
-                  "example": "asd123"
-                }
-              },
-              "required": [
-                "uuid",
-                "password"
-              ]
+              "type": "string"
             }
           }
         ],
@@ -272,6 +246,26 @@
           },
           "403": {
             "description": "Forbidden"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "in": {
+                    "example": "any"
+                  },
+                  "description": {
+                    "example": "any"
+                  },
+                  "schema": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -288,33 +282,16 @@
             "name": "uuid",
             "in": "path",
             "required": true,
-            "type": "string",
+            "schema": {
+              "type": "string"
+            },
             "description": "Identificador único UUID del dispositivo"
           },
           {
             "name": "Authorization",
             "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
             "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "any"
-                },
-                "param": {
-                  "example": "any"
-                },
-                "habitat": {
-                  "example": "any"
-                },
-                "password": {
-                  "example": "any"
-                }
-              }
+              "type": "string"
             }
           }
         ],
@@ -324,6 +301,29 @@
           },
           "401": {
             "description": "Unauthorized"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "example": "any"
+                  },
+                  "param": {
+                    "example": "any"
+                  },
+                  "habitat": {
+                    "example": "any"
+                  },
+                  "password": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -340,47 +340,60 @@
             "name": "uuid",
             "in": "path",
             "required": true,
-            "type": "string",
-            "description": "Identificador único UUID del dispositivo"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "description": "Cuerpo de la solicitud",
             "schema": {
-              "type": "object",
-              "properties": {
-                "password": {
-                  "type": "string",
-                  "example": "asd123"
-                },
-                "sensor": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string",
-                        "example": "temperature"
-                      },
-                      "value": {
-                        "type": "number",
-                        "example": 22
-                      }
-                    }
-                  }
-                }
-              },
-              "required": [
-                "password",
-                "sensor"
-              ]
-            }
+              "type": "string"
+            },
+            "description": "Identificador único UUID del dispositivo"
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "password": {
+                    "type": "string",
+                    "required": true
+                  },
+                  "sensor": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "required": true
+                        },
+                        "value": {
+                          "type": "integer",
+                          "required": true
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "example": {
+                "password": "asd123",
+                "sensor": [
+                  {
+                    "name": "temperature",
+                    "value": 22
+                  },
+                  {
+                    "name": "humidity",
+                    "value": 55
+                  }
+                ]
+              }
+            }
           }
         }
       }
@@ -396,7 +409,9 @@
           {
             "name": "Authorization",
             "in": "header",
-            "type": "string"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {

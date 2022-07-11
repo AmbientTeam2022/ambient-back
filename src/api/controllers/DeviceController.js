@@ -237,17 +237,40 @@ const updateSensors = async (req, res) => {
     #swagger.parameters['uuid'] = {
       description: 'Identificador único UUID del dispositivo',
     }
-    #swagger.parameters['body'] = {
-      in: 'body',
-      description: 'Cuerpo de la solicitud',
-      schema: {
-        $password: 'asd123',
-        $sensor: [
-          {
-            name: 'temperature',
-            value: 22
+    #swagger.requestBody = {
+      required: true,
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: {
+              password: { type: "string", required: true },
+              sensor: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    name: { type: "string", required: true },
+                    value: { type: "integer", required: true }
+                  }
+                }
+              }
+            }
+          },
+          example: {
+            password: 'asd123',
+            sensor: [
+              {
+                name: 'temperature',
+                value: 22
+              },
+              {
+                name: 'humidity',
+                value: 55
+              }
+            ]
           }
-        ]
+        }
       }
     }
    */
