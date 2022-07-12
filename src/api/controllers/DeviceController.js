@@ -58,15 +58,18 @@ const getDevice = async (req, res) => {
 const createDevice = async (req, res) => {
   /* #swagger.tags = ['Device']
     #swagger.summary = 'Crea un nuevo dispositivo'
-    #swagger.parameters['body'] = {
-      in: 'body',
-      description: 'Cuerpo de la solicitud',
-      schema: {
-        $uuid: '1234',
-        $name: 'Sapitos',
-        $icon: '04',
-        $category: 1,
-        $habitat: 3,
+    #swagger.requestBody = {
+      required: true,
+      content: {
+        "application/json": {
+          example: {
+            $uuid: '1234',
+            $name: 'Sapitos',
+            $icon: '04',
+            $category: 1,
+            $habitat: 3,
+          }
+        }
       }
     }
    */
@@ -162,12 +165,16 @@ const deleteDevice = async (req, res) => {
 const getNewDevice = async (req, res) => {
   /* #swagger.tags = ['Device']
     #swagger.summary = 'Obtiene un dispositivo usando sus credenciales'
-    #swagger.parameters['body'] = {
-      in: 'body',
-      description: 'Cuerpo de la solicitud',
-      schema: {
-        $uuid: '1234-1234-1234',
-        $password: 'asd123',
+    #swagger.requestBody = {
+      required: true,
+      content: {
+        "application/json": {
+          schema: { type: "Object" },
+          example: {
+            uuid: "1234-1234-1234",
+            password: "asd123"
+          }
+        }
       }
     }
    */

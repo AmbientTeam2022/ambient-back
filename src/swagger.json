@@ -34,21 +34,15 @@
           }
         },
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "in": {
-                    "example": "any"
-                  },
-                  "description": {
-                    "example": "any"
-                  },
-                  "schema": {
-                    "example": "any"
-                  }
-                }
+                "type": "Object"
+              },
+              "example": {
+                "username": "alanbrito",
+                "password": "12345"
               }
             }
           }
@@ -75,21 +69,17 @@
           }
         },
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "in": {
-                    "example": "any"
-                  },
-                  "description": {
-                    "example": "any"
-                  },
-                  "schema": {
-                    "example": "any"
-                  }
-                }
+                "type": "Object"
+              },
+              "example": {
+                "username": "alanbrito",
+                "password": "12345",
+                "firstName": "Alan",
+                "lastName": "Brito"
               }
             }
           }
@@ -103,17 +93,7 @@
         ],
         "summary": "Cierra la sesión del usuario",
         "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "description": "Cuerpo de la solicitud",
-            "schema": {
-              "type": "object",
-              "properties": {}
-            }
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -249,21 +229,15 @@
           }
         },
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "in": {
-                    "example": "any"
-                  },
-                  "description": {
-                    "example": "any"
-                  },
-                  "schema": {
-                    "example": "any"
-                  }
-                }
+                "type": "Object"
+              },
+              "example": {
+                "uuid": "1234-1234-1234",
+                "password": "asd123"
               }
             }
           }

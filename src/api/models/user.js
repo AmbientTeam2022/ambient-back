@@ -13,6 +13,7 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const Schema = mongoose.Schema
 const Organization = require('./organization')
+const Role = require('./role')
 
 const UserSchema = new Schema({
   username: {
@@ -63,7 +64,8 @@ UserSchema.methods.comparePassword = function (password, cb) {
 /**
  * Crea una organización personal para el usuario
  *
- * Utilizado para generar la organización de usuarios nuevos.
+ * Utilizado para generar una organización para nuevos usuario y
+ * asignarles por defecto un rol de administrador.
  *
  * @method createOrganization
  */
@@ -72,11 +74,17 @@ UserSchema.methods.createOrganization = function () {
     name: this.username,
   })
   this.organization.save()
+
+  this.role = new Role({
+    name: 'Administrador',
+    organization: this.organization,
+    canManageUsers: true,
+    canManageDevices: true,
+    canManageRoles: true,
+    canManageReports: true,
+    canViewDevices: true,
+  })
+  this.role.save()
 }
-
-// UserSchema.virtual('can_manage_users')
-//   .get(function () {
-
-//   })
 
 module.exports = mongoose.model('User', UserSchema)
